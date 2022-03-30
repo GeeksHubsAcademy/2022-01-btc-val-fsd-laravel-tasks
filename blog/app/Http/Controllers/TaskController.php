@@ -13,4 +13,11 @@ class TaskController extends Controller
 
         return $tasks;
     }
+
+    public function getOne($id)
+    {
+        $task = Task::findOrFail($id);
+
+        return $task;
+    }
 }

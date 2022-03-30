@@ -20,4 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
+// TASKS
 Route::get('/tasks', [TaskController::class, 'getAll']);
+
+Route::get('/task/{id}', [TaskController::class, 'getOne']);
