@@ -24,3 +24,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/tasks', [TaskController::class, 'getAll']);
 
 Route::get('/task/{id}', [TaskController::class, 'getOne']);
+
+Route::delete('/task/{id}', [TaskController::class, 'delete']);
