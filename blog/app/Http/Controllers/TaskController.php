@@ -29,4 +29,17 @@ class TaskController extends Controller
 
         return 'Task deleted';
     }
+
+    public function create(Request $request)
+    {
+        $data = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id' => $request->user_id
+        ];
+
+        Task::create($data);
+
+        return 'Task created';
+    }
 }
