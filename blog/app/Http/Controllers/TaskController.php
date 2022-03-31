@@ -78,4 +78,9 @@ class TaskController extends Controller
 
         return $response;
     }
+
+    public function exampleMiddleware()
+    {
+        return 'Middleware';
+    }
 }

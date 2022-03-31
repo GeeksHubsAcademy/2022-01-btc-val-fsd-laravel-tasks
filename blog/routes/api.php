@@ -31,3 +31,6 @@ Route::post('/task', [TaskController::class, 'create']);
 
 Route::get('/tasks/{userId}', [TaskController::class, 'getAllByUser']);
 
+
+Route::get('/task_middleware', [TaskController::class, 'exampleMiddleware'])->middleware('fsd');
+
