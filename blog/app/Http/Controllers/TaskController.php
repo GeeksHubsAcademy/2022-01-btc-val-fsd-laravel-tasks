@@ -47,8 +47,7 @@ class TaskController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
-            'description' => 'required',
-            'user_id' => 'required',
+            'description' => 'required'
         ]);
 
         if($validator->fails()){
@@ -58,7 +57,7 @@ class TaskController extends Controller
         $data = [
             'title' => $request->title,
             'description' => $request->description,
-            'user_id' => $request->user_id
+            'user_id' => auth()->user()->id
         ];
 
         Task::create($data);
