@@ -58,6 +58,13 @@ class TaskController extends Controller
     {
         $tasksByUserId = User::find($userId)->tasks;
 
-        return $tasksByUserId;
+        $user = User::find($userId)->toArray();
+
+        $response = [
+            'user' => $user,
+            'tasks' => $tasksByUserId
+        ];
+
+        return $response;
     }
 }
