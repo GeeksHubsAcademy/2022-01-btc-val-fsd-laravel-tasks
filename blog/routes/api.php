@@ -26,7 +26,7 @@ Route::get('/tasks', [TaskController::class, 'getAll'])->middleware('jwt.auth');
 
 Route::get('/task/{id}', [TaskController::class, 'getOne'])->middleware('jwt.auth');
 
-Route::delete('/task/{id}', [TaskController::class, 'delete']);
+Route::delete('/task/{id}', [TaskController::class, 'delete'])->middleware('jwt.auth');
 
 Route::post('/task', [TaskController::class, 'create'])->middleware('jwt.auth');
 
