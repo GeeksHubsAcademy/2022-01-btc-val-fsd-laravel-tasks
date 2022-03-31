@@ -38,11 +38,12 @@ Route::get('/task_middleware', [TaskController::class, 'exampleMiddleware'])->mi
 
 // AUTH
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
 
 Route::group([
     'middleware' => 'jwt.auth'
 ], function () {
-    Route::post('/login', [AuthController::class, 'login']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
 });
