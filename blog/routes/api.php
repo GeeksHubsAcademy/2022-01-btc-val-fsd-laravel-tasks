@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 // TASKS
 Route::get('/tasks', [TaskController::class, 'getAll'])->middleware('jwt.auth');
 
-Route::get('/task/{id}', [TaskController::class, 'getOne']);
+Route::get('/task/{id}', [TaskController::class, 'getOne'])->middleware('jwt.auth');
 
 Route::delete('/task/{id}', [TaskController::class, 'delete']);
 

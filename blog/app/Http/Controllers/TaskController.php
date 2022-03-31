@@ -28,7 +28,8 @@ class TaskController extends Controller
 
     public function getOne($id)
     {
-        $task = Task::findOrFail($id);
+        $userId = auth()->user()->id;
+        $task = Task::where('user_id', $userId)->findOrFail($id);
 
         return $task;
     }
