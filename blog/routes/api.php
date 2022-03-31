@@ -22,15 +22,16 @@ use Illuminate\Support\Facades\Route;
 
 
 // TASKS
-Route::get('/tasks', [TaskController::class, 'getAll'])->middleware('jwt.auth');
+Route::group([
+    'middleware' => 'jwt.auth'
+], function () {
+    Route::get('/tasks', [TaskController::class, 'getAll']);
+    Route::get('/task/{id}', [TaskController::class, 'getOne']);    
+    Route::delete('/task/{id}', [TaskController::class, 'delete']);    
+    Route::post('/task', [TaskController::class, 'create']);    
+    Route::get('/tasks_user', [TaskController::class, 'getAllByUser']);
+});
 
-Route::get('/task/{id}', [TaskController::class, 'getOne'])->middleware('jwt.auth');
-
-Route::delete('/task/{id}', [TaskController::class, 'delete'])->middleware('jwt.auth');
-
-Route::post('/task', [TaskController::class, 'create'])->middleware('jwt.auth');
-
-Route::get('/tasks_user', [TaskController::class, 'getAllByUser'])->middleware('jwt.auth');
 
 // Ejemplo middleware basico
 Route::get('/task_middleware', [TaskController::class, 'exampleMiddleware'])->middleware('fsd');
@@ -39,7 +40,6 @@ Route::get('/task_middleware', [TaskController::class, 'exampleMiddleware'])->mi
 // AUTH
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
 
 Route::group([
     'middleware' => 'jwt.auth'
