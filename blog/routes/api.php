@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // TASKS
-Route::get('/tasks', [TaskController::class, 'getAll']);
+Route::get('/tasks', [TaskController::class, 'getAll'])->middleware('jwt.auth');
 
 Route::get('/task/{id}', [TaskController::class, 'getOne']);
 
@@ -30,9 +30,9 @@ Route::delete('/task/{id}', [TaskController::class, 'delete']);
 
 Route::post('/task', [TaskController::class, 'create']);
 
-Route::get('/tasks/{userId}', [TaskController::class, 'getAllByUser']);
+Route::get('/tasks_user', [TaskController::class, 'getAllByUser'])->middleware('jwt.auth');
 
-
+// Ejemplo middleware basico
 Route::get('/task_middleware', [TaskController::class, 'exampleMiddleware'])->middleware('fsd');
 
 

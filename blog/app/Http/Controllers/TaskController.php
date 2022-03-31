@@ -65,14 +65,14 @@ class TaskController extends Controller
         return 'Task created';
     }
 
-    public function getAllByUser($userId)
+    public function getAllByUser()
     {
-        $tasksByUserId = User::find($userId)->tasks;
+        $dataUser = auth()->user();
 
-        $user = User::find($userId)->toArray();
+        $tasksByUserId = User::find($dataUser->id)->tasks;
 
         $response = [
-            'user' => $user,
+            'user' => $dataUser,
             'tasks' => $tasksByUserId
         ];
 
