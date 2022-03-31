@@ -28,3 +28,6 @@ Route::get('/task/{id}', [TaskController::class, 'getOne']);
 Route::delete('/task/{id}', [TaskController::class, 'delete']);
 
 Route::post('/task', [TaskController::class, 'create']);
+
+Route::get('/tasks/{userId}', [TaskController::class, 'getAllByUser']);
+

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -51,5 +52,12 @@ class TaskController extends Controller
         Task::create($data);
 
         return 'Task created';
+    }
+
+    public function getAllByUser($userId)
+    {
+        $tasksByUserId = User::find($userId)->tasks;
+
+        return $tasksByUserId;
     }
 }
