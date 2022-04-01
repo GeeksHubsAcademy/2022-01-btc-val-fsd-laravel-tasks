@@ -85,4 +85,31 @@ class TaskController extends Controller
     {
         return 'Middleware';
     }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'string',
+            'description' => 'string'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $userId = auth()->user()->id;
+        $task = Task::where('user_id', $userId)->findOrFail($id);
+
+        if ($request->has('title')) {
+            $task->title = $request->title;
+        }
+
+        if ($request->has('description')) {
+            $task->description = $request->description;
+        }
+        
+        $task->save();
+
+        return 'Task updated';
+    }
 }
